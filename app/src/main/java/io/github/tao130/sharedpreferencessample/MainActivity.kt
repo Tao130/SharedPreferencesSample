@@ -10,20 +10,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val pref = getSharedPreferences("file_name", Context.MODE_PRIVATE)
-        // プリファレンスから、保存されている文字列を取得
-        // まだ保存されていない場合は未登録を返す
-        val storedText = pref.getString("key", "未登録")
+
+        // getSharedPreferencesメソッドでSharedPreferencesオブジェクトを取得
+        val sharedPref = getSharedPreferences("プリファレンスファイル名", Context.MODE_PRIVATE)
+
+        // getString()を呼び出して保存されている文字列を読み込む
+        // まだ保存されていない場合はデフォルトの文字列を返す
+        val storedText = sharedPref.getString("key名", "デフォルト文字列")
 
         val editText = findViewById<EditText>(R.id.editText)
         editText.setText(storedText)
 
-        val button = findViewById<Button>(R.id.storeButton)
+        val button = findViewById<Button>(R.id.saveButton)
         button.setOnClickListener {
-            // テキストボックスに入力されている文字列
+            // テキストボックスに入力されている文字列を取得
             val inputText = editText.text.toString()
-            // プリファレンスに保存する
-            pref.edit().putString("key", inputText).apply()
+            // プリファレンスに書き込む
+            sharedPref.edit().putString("key名", inputText).apply()
         }
     }
 }
