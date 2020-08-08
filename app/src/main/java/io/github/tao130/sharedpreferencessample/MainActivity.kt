@@ -16,10 +16,10 @@ class MainActivity : AppCompatActivity() {
 
         // getString()を呼び出して保存されている文字列を読み込む
         // まだ保存されていない場合はデフォルトの文字列を返す
-        val storedText = sharedPref.getString("key名", "デフォルト文字列")
+        val savedText = sharedPref.getString("key名", "デフォルト文字列")
 
         val editText = findViewById<EditText>(R.id.editText)
-        editText.setText(storedText)
+        editText.setText(savedText)
 
         val button = findViewById<Button>(R.id.saveButton)
         button.setOnClickListener {
